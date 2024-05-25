@@ -1,23 +1,33 @@
 using Google;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoogleSiginInHandler : MonoBehaviour
 {
 
 
 
-    public string webClientId = "<your client id here>";
+    [SerializeField] string webClientId = "<your client id here>";
+    [SerializeField] string pcClinetId = string.Empty;
+
+
+    [SerializeField] Button _signInButton;
+
+
 
     private GoogleSignInConfiguration configuration;
 
     void Awake()
     {
+        _signInButton.onClick.AddListener(GoogleSiginIn);
+
         configuration = new GoogleSignInConfiguration
         {
+#if UNITY_ANDROID
             WebClientId = webClientId,
+#endif
             RequestIdToken = true
         };
     }
@@ -28,13 +38,11 @@ public class GoogleSiginInHandler : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void OnSignIn()
+    /// <summary>
+    /// 
+    /// </summary>
+    public void GoogleSiginIn()
     {
         GoogleSignIn.Configuration = configuration;
         GoogleSignIn.Configuration.UseGameSignIn = false;
@@ -47,16 +55,17 @@ public class GoogleSiginInHandler : MonoBehaviour
         Debug.Log("Calling SignIn");
 
         GoogleSignIn.DefaultInstance.SignIn().ContinueWith(
-          OnAuthenticationFinished, TaskScheduler.Current);
+          OnGoogleAuthenticationFinished, TaskScheduler.Current);
     }
 
-    public void OnSignOut()
+    public void GoogleSignOut()
     {
-        Debug.Log("Calling SignOut");
+        
         GoogleSignIn.DefaultInstance.SignOut();
+        Debug.Log("Calling SignOut");
     }
 
-    internal void OnAuthenticationFinished(Task<GoogleSignInUser> task)
+    internal void OnGoogleAuthenticationFinished(Task<GoogleSignInUser> task)
     {
         if (task.IsFaulted)
         {
