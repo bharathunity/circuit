@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Circuit/Circuit Scenes/Login.unity
+    guid: ab2377cc9763fcf4f9790a8ffc281639
   m_configObjects: {}
