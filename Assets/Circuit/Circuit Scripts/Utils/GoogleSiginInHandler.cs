@@ -19,7 +19,7 @@ namespace CircuitAuthentication
 
         [SerializeField] Button _signInButton;
 
-
+        
 
         private GoogleSignInConfiguration configuration;
 
@@ -27,14 +27,21 @@ namespace CircuitAuthentication
 
         void Awake()
         {
+            /*string clientId = string.Empty;
+
+#if UNITY_ANDROID
+            clientId = webClientId;
+#endif
+#if UNITY_EDITOR_WIN
+            clientId = webClientId;
+#endif
+*/
             _signInButton.onClick.AddListener(GoogleSiginIn);
             _sceneHandler = new SceneHandler();
 
             configuration = new GoogleSignInConfiguration
             {
-#if UNITY_ANDROID
                 WebClientId = webClientId,
-#endif
                 RequestIdToken = true
             };
         }
@@ -107,7 +114,7 @@ namespace CircuitAuthentication
 
                 // SceneHandler.OnSceneChanged?.Invoke(SceneHandler.Scene.Game);
                 
-                _sceneHandler.ChangeScene(SceneHandler.Scene.Game);
+                _sceneHandler.ChangeScene(SceneHandler.Scene.Menu);
             }
 
             

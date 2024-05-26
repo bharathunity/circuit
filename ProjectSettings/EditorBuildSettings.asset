@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Circuit/Circuit Scenes/Login.unity
     guid: ab2377cc9763fcf4f9790a8ffc281639
   - enabled: 1
+    path: Assets/Circuit/Circuit Scenes/Menu.unity
+    guid: 4babfcce43c4c444c9b8d5ed6240a78b
+  - enabled: 1
     path: Assets/Circuit/Circuit Scenes/Game.unity
     guid: f686325935817784fb417a123c4e865c
   - enabled: 0

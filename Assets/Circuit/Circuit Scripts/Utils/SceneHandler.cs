@@ -18,6 +18,7 @@ namespace Circuit
         {
             Main = 1,
             Login,
+            Menu,
             Game
         }
 
@@ -44,6 +45,10 @@ namespace Circuit
             {
                 ChangeToLoginScene();
             }
+            if(loadSceneName == Scene.Menu)
+            {
+                ChangeToMenuScene();
+            }
             if(loadSceneName == Scene.Game)
             {
                 ChangeToGameScene();
@@ -54,16 +59,31 @@ namespace Circuit
             
         }
 
-
+        /// <summary>
+        /// Pops up Login scene
+        /// </summary>
         void ChangeToLoginScene()
         {
             SceneManager.LoadSceneAsync(Scene.Login.ToString().Trim(), LoadSceneMode.Additive);
         }
 
+        /// <summary>
+        /// Pops up Menu scene
+        /// </summary>
+        void ChangeToMenuScene()
+        {
+            SceneManager.UnloadSceneAsync(Scene.Login.ToString().Trim());
+            SceneManager.LoadSceneAsync(Scene.Menu.ToString().Trim(), LoadSceneMode.Additive);
+        }
+
+        /// <summary>
+        /// Pops up Game scene
+        /// </summary>
         void ChangeToGameScene()
         {
+            SceneManager.UnloadSceneAsync(Scene.Menu.ToString().Trim());
             SceneManager.LoadSceneAsync(Scene.Game.ToString().Trim(), LoadSceneMode.Additive);
-            SceneManager.UnloadSceneAsync(Scene.Login.ToString().Trim());
+            
         }
 
 
